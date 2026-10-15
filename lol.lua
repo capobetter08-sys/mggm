@@ -931,7 +931,7 @@ local Library = { } do
         Scale = 1
     })
 
-    local function Corner(Object, Radius)
+    local function Corner(Object, Radius) Radius = math.max(Radius or 0, 10)
         Library:Create("UICorner", {
             Parent = Object,
             CornerRadius = UDim.new(0, Radius)
@@ -968,7 +968,7 @@ local Library = { } do
         end
 
         if Params.Round then
-            Corner(Frame.Instance, Params.Round)
+            Corner(Frame.Instance, Params.Round) if Params.Color and (Params.Round or 0)>=8 then local OL=Library:Create("Frame",{Parent=Params.Parent}) OL.Instance.Position=UDim2.new(Frame.Instance.Position.X.Scale,Frame.Instance.Position.X.Offset-1,Frame.Instance.Position.Y.Scale,Frame.Instance.Position.Y.Offset-1) OL.Instance.Size=UDim2.new(Frame.Instance.Size.X.Scale,Frame.Instance.Size.X.Offset+2,Frame.Instance.Size.Y.Scale,Frame.Instance.Size.Y.Offset+2) OL.Instance.AnchorPoint=Frame.Instance.AnchorPoint OL.Instance.BackgroundTransparency=0 OL.Instance.ZIndex=(Params.Z or 1)-1 OL.Instance.BorderSizePixel=0 OL.Instance.BackgroundColor3=Library.Theme.Line OL:AddToTheme({BackgroundColor3="Line"}) end
         end
 
         return Frame
